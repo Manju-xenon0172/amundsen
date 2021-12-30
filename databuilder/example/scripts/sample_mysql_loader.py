@@ -29,37 +29,36 @@ from databuilder.publisher.neo4j_csv_publisher import Neo4jCsvPublisher
 from databuilder.task.task import DefaultTask
 from databuilder.transformer.base_transformer import NoopTransformer
 
-es_host = None
-neo_host = None
+es_host = 172.16.200.50
+neo_host = 172.16.200.50
 if len(sys.argv) > 1:
     es_host = sys.argv[1]
 if len(sys.argv) > 2:
     neo_host = sys.argv[2]
 
 es = Elasticsearch([
-    {'host': es_host or 'localhost'},
+    {'host': es_host },
 ])
 
-DB_FILE = '/tmp/test.db'
-SQLITE_CONN_STRING = 'sqlite:////tmp/test.db'
-Base = declarative_base()
 
-NEO4J_ENDPOINT = f'bolt://{neo_host or "localhost"}:7687'
+
+NEO4J_ENDPOINT = f'bolt://172.16.200.50:32575'
 
 neo4j_endpoint = NEO4J_ENDPOINT
 
 neo4j_user = 'neo4j'
-neo4j_password = 'test'
+neo4j_password = '123'
 
 LOGGER = logging.getLogger(__name__)
 
 
 # todo: connection string needs to change
 def connection_string():
-    user = 'username'
-    host = 'localhost'
+    user = 'root'
+    host = 127.0.0.1
     port = '3306'
-    db = 'mysql'
+    db = 'world'
+    password = "Manju@123"
     return "mysql://%s@%s:%s/%s" % (user, host, port, db)
 
 
